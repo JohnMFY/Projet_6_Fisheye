@@ -1,11 +1,11 @@
-    
-/***********************************************************************/
+/****************************************************************************/    
+/***************** INTEGRATION OF PHOTOGRAPHERS IN THE DOM *****************/
+/**************************************************************************/
+
   async function getPhotographers() {
     const Data = await fetch('../../data/photographers.json');
-    const DataJson = await Data.json();
+    const DataJson = await Data.json(); //datas des photographes en JSON
     return DataJson
-    console.log(DataJson.photographers)
-    console.log(DataJson.media)
   } 
 
     async function displayData(photographers) {
@@ -25,3 +25,4 @@
     }
 
     init()
+/**************************************************************************/
