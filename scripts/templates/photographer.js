@@ -1,18 +1,14 @@
 function photographerTemplate(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+    const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/${portrait}`;
-    const Name = `${name}`
-    const City = `${city}`
-    const Country = `${country}`
-    const Tagline = `${tagline}`
-    const Price = `${price}`
-
+    const Name = `${name}`;
+    
     function getUserCardDOM() {
 
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
-        link.setAttribute('href', 'photographer.html');
+        link.setAttribute('href', `photographer.html?id=${id}`);
         link.setAttribute('aria-label', Name)
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
