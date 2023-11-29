@@ -12,7 +12,7 @@ function photographerTemplate(data) {
 
         const link = document.createElement('a');
         link.setAttribute('href', `photographer.html?id=${id}`);    //PhotographerId est passé dans l'URL pour récupération des datas sur page du photographe
-        link.setAttribute('aria-label', name)
+        link.setAttribute('aria-label', name)                      // dans aria-label on met le name pour avoir dynamiquement le nom du photographe avec lecteur d'écran
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);

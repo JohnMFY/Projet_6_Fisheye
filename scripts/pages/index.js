@@ -14,14 +14,14 @@
         photographers.forEach((photographer) => {                                      // Loop for each pour que chaque data d'un photographe sois affiché avec le photographerTemplate(photographer.js)
             const photographerModel = photographerTemplate(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);                             // Intégre le model à un élément du DOM
+            photographersSection.appendChild(userCardDOM);                           // Intégre le model à un élément du DOM
         });
     }   
 
     async function init() {
         // Récupère les datas des photographes
         const { photographers } = await getPhotographers();
-        displayData(photographers);                                                   // affiche le model
+        displayData(photographers);                                              // affiche le model
     }
 
     init()

@@ -15,13 +15,23 @@
  
         const photographer = photographersData.photographers.filter(function(data){
             return data.id == id
-        })
+        });
+
         const photographerArt = photographersData.media.filter(function(data){
             return data.photographerId == id
         })
+
         console.log(id)
         console.log(photographer)
         console.log(photographerArt)
+
+            const photographHeaderDom = document.querySelector(".photograph-header")
+            const h5 = document.createElement('h5')
+            h5.textContent = id
+            photographHeaderDom.appendChild(h5)
+    
         return photographer, photographerArt
     }
     getPhotographerData()
+
+    
