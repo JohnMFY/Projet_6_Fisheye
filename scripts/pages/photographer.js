@@ -21,14 +21,34 @@
             return data.photographerId == id
         })
 
-        console.log(id)
-        console.log(photographer)
+        console.log(photographer[0])
         console.log(photographerArt)
 
+            const artist = photographer[0]
+            const picture = `assets/photographers/${artist.portrait}`; 
+            
             const photographHeaderDom = document.querySelector(".photograph-header")
-            const h5 = document.createElement('h5')
-            h5.textContent = id
-            photographHeaderDom.appendChild(h5)
+
+            const div = document.createElement('div')
+
+            const h2 = document.createElement('h2')
+            h2.textContent = artist.name
+
+            const h3 = document.createElement('h3');
+            h3.textContent = artist.city + ', ' + artist.country
+    
+            const p = document.createElement('p')
+            p.textContent = artist.tagline
+
+            const img = document.createElement( 'img' );
+            img.setAttribute("src", picture);
+            img.setAttribute('aria-label', artist.name + ' profile picture') 
+
+            photographHeaderDom.appendChild(div)
+            div.appendChild(h2)
+            div.appendChild(h3)
+            div.appendChild(p)
+            photographHeaderDom.appendChild(img)
     
         return photographer, photographerArt
     }
