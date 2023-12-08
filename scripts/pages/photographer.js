@@ -62,15 +62,36 @@
 
 
     /*********************** PHOTOGRAPHER PAGE MAIN *************************/    
+        
+        /*** MEDIA ARRAY SORTING ***/
 
-    const sortSelection = document.getElementById("sort")
-    let option = sortSelection.option
-    function test(){
-        option.onchange
-        console.log(option)
-    }
+        
 
-    return photographer, photographerArt, test
+            /* ALPHABETICAL SORTING */
+            function sortByLetters(a,b){
+                if(a.title.toLowerCase() < b.title.toLowerCase()
+                )return -1
+            };
+            console.log('Sort by alphabet : ')
+            console.log( photographerArt.sort(sortByLetters))
+
+            /* LIKE SORTING */
+            function sortByLikes(a,b){
+                return b.likes - a.likes
+            };
+            console.log('Sort by likes : ')
+            console.log( photographerArt.sort(sortByLikes))
+
+            /* DATE SORTING */
+            function sortByDates(a,b){
+                return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+            };
+            console.log('Sort by dates : ')
+            console.log( photographerArt.sort(sortByDates))
+
+
+    /*******************************************************************/
+    return photographer, photographerArt    
 }
 getPhotographerData()
 

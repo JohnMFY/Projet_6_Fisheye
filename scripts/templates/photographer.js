@@ -39,8 +39,10 @@ function photographerTemplate(data) {
         div.appendChild(h3)
         div.appendChild(h4)
         div.appendChild(p)
+        
 
         return (article);
+        
 
     }
     return { name, picture, getUserCardDOM}
