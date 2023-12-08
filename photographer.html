@@ -19,10 +19,21 @@
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <div id="photographerMediaDom">
+
+        <label for="photographerMediaSort">Trier par </label>
+
+        <select name="sort" id="sort">
+          <option value="popularity" id="popularity">Popularité</option>
+          <option value="date" id="date">Date</option>
+          <option value="title" id="title">Titre</option>
+        </select>
+
+      </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
-				<header >
+				<header id='contactHeader' >
           <h2 id="contactH2" aria-label="contact me">Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>

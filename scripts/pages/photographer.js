@@ -24,34 +24,53 @@
         console.log(photographer[0])
         console.log(photographerArt)
 
-            const artist = photographer[0]
-            const picture = `assets/photographers/${artist.portrait}`; 
-            
-            const photographHeaderDom = document.querySelector(".photograph-header")
+    /*********************** PHOTOGRAPHER PAGE HEADER **************************/
 
-            const div = document.createElement('div')
+        const artist = photographer[0]
+        const picture = `assets/photographers/${artist.portrait}`; 
+        
+        const photographHeaderDom = document.querySelector(".photograph-header")
 
-            const h2 = document.createElement('h2')
-            h2.textContent = artist.name
+        const div = document.createElement('div')
 
-            const h3 = document.createElement('h3');
-            h3.textContent = artist.city + ', ' + artist.country
+        const h2 = document.createElement('h2')
+        h2.textContent = artist.name
+
+        const h3 = document.createElement('h3');
+        h3.textContent = artist.city + ', ' + artist.country
+
+        const p = document.createElement('p')
+        p.textContent = artist.tagline
+
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        img.setAttribute('aria-label', artist.name + ' profile picture') 
+
+        photographHeaderDom.appendChild(div)
+        div.appendChild(h2)
+        div.appendChild(h3)
+        div.appendChild(p)
+        photographHeaderDom.appendChild(img)
+
+
+    /*********************** PHOTOGRAPHER CONTACT MODAL *************************/ 
     
-            const p = document.createElement('p')
-            p.textContent = artist.tagline
+        const modalHeader = document.getElementById('contactHeader')
+        const modalName = document.createElement('h2')
+        modalName.textContent = artist.name
+        modalHeader.appendChild(modalName)
 
-            const img = document.createElement( 'img' );
-            img.setAttribute("src", picture);
-            img.setAttribute('aria-label', artist.name + ' profile picture') 
 
-            photographHeaderDom.appendChild(div)
-            div.appendChild(h2)
-            div.appendChild(h3)
-            div.appendChild(p)
-            photographHeaderDom.appendChild(img)
-    
-        return photographer, photographerArt
+    /*********************** PHOTOGRAPHER PAGE MAIN *************************/    
+
+    const sortSelection = document.getElementById("sort")
+    let option = sortSelection.option
+    function test(){
+        option.onchange
+        console.log(option)
     }
-    getPhotographerData()
 
-    
+    return photographer, photographerArt, test
+}
+getPhotographerData()
+
