@@ -72,7 +72,6 @@
               
               console.log(formInput)
               
-        
             closeModal()
         })
 
