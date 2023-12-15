@@ -80,7 +80,7 @@
     /*********************** PHOTOGRAPHER PAGE MAIN *************************/    
 
         /*** MEDIA ARRAY SORTING ***/
-        function sorting(){
+        function onChangeEvent(){
 
             const options = document.getElementById('sort')
 
@@ -115,9 +115,17 @@
                 break;
             }
         }
+        
+        /*** MEDIA TEMPLATE ***/
 
+/*        function MediaDOM(){
 
-
+            const article = document.createElement( 'article' );
+            const h2 = document.createElement( 'h2' );
+            h2.textContent = photographerArt.title;
+            <i class="fa-solid fa-heart"></i> //heart icon
+        }
+*/        
     return photographer, photographerArt  
 }
 getPhotographerData()
