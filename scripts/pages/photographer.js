@@ -52,46 +52,73 @@
         div.appendChild(p)
         photographHeaderDom.appendChild(img)
 
-
     /*********************** PHOTOGRAPHER CONTACT MODAL *************************/ 
-    
+
         const modalHeader = document.getElementById('contactHeader')
         const modalName = document.createElement('h2')
         modalName.textContent = artist.name
         modalHeader.appendChild(modalName)
 
-
-    /*********************** PHOTOGRAPHER PAGE MAIN *************************/    
+        const submit = document.getElementById('submit')
+        submit.addEventListener('click', (e) =>{
+            e.preventDefault()
         
-        /*** MEDIA ARRAY SORTING ***/
-
+            const formInput = {
+                firstName: document.getElementById('prenom').value,
+                lastName: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+              }
+              
+              console.log(formInput)
+              
         
-
-            /* ALPHABETICAL SORTING */
-            function sortByLetters(a,b){
-                if(a.title.toLowerCase() < b.title.toLowerCase()
-                )return -1
-            };
-            console.log('Sort by alphabet : ')
-            console.log( photographerArt.sort(sortByLetters))
-
-            /* LIKE SORTING */
-            function sortByLikes(a,b){
-                return b.likes - a.likes
-            };
-            console.log('Sort by likes : ')
-            console.log( photographerArt.sort(sortByLikes))
-
-            /* DATE SORTING */
-            function sortByDates(a,b){
-                return new Date(a.date).valueOf() - new Date(b.date).valueOf()
-            };
-            console.log('Sort by dates : ')
-            console.log( photographerArt.sort(sortByDates))
-
+            closeModal()
+        })
 
     /*******************************************************************/
-    return photographer, photographerArt    
+
+    /*********************** PHOTOGRAPHER PAGE MAIN *************************/    
+
+        /*** MEDIA ARRAY SORTING ***/
+        function sorting(){
+
+            const options = document.getElementById('sort')
+
+            switch(options){
+
+                /* LIKE SORTING */
+                case("popularity"):                                                                             
+                    function sortByLikes(a,b){
+                        return b.likes - a.likes
+                    };
+                    console.log('Sort by likes : ')
+                    console.log( photographerArt.sort(sortByLikes))
+                break;
+
+                /* ALPHABETICAL SORTING */    
+                case("title"):                                                                          
+                    function sortByLetters(a,b){
+                        if(a.title.toLowerCase() < b.title.toLowerCase()
+                        )return -1
+                    };
+                    console.log('Sort by alphabet : ')
+                    console.log( photographerArt.sort(sortByLetters))
+                break;
+                
+                /* DATE SORTING */
+                case("date"):                                                                       
+                    function sortByDates(a,b){
+                        return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+                    };
+                    console.log('Sort by dates : ')
+                    console.log( photographerArt.sort(sortByDates))
+                break;
+            }
+        }
+
+
+
+    return photographer, photographerArt  
 }
 getPhotographerData()
-

@@ -23,10 +23,10 @@
 
         <label for="photographerMediaSort">Trier par </label>
 
-        <select name="sort" id="sort">
-          <option value="popularity" id="popularity">Popularité</option>
-          <option value="date" id="date">Date</option>
-          <option value="title" id="title">Titre</option>
+        <select name="sort" id="sort" onchange="sorting()">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
         </select>
 
       </div>
@@ -37,18 +37,18 @@
           <h2 id="contactH2" aria-label="contact me">Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form id="form">
 					<div>
 						<label>Prénom</label>
-            <input />
+            <input type="text" id="prenom"/>
             <label>Nom</label>
-            <input />
+            <input  type="text" id="nom"/>
             <label>Email</label>
-            <input />
+            <input type="text" id="email"/>
             <label>Message</label>
-						<input />
+						<input type="text" id="message"/>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" id="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>
