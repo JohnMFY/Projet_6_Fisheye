@@ -4,7 +4,7 @@
 /****** RECOVERY OF THE PHOTOGRAPHER ID IN THE URL WITH PARAMS ******/
 /*******************************************************************/
 
- async function getPhotographerData(){
+async function getPhotographerData(){
 
     const photographerId = window.location.search
     const UrlParams = new URLSearchParams(photographerId)
@@ -20,9 +20,6 @@
         const photographerArt = photographersData.media.filter(function(data){
             return data.photographerId == id
         })
-
-        console.log(photographer[0])
-        console.log(photographerArt.sort(sortByLikes))
 
     /*********************** PHOTOGRAPHER PAGE HEADER **************************/
 
@@ -75,11 +72,11 @@
             closeModal()
         })
 
-    /*******************************************************************/
+    /*************************************************************************/
 
     /*********************** PHOTOGRAPHER PAGE MAIN *************************/    
 
-        /*** MEDIA ARRAY SORTING ***/
+        /*** MEDIA ARRAY SORTING FUNCTION ***/
 
             /* DATE SORTING */
             function sortByDates(a,b){
@@ -97,11 +94,10 @@
                 return b.likes - a.likes
             };
 
-            photographerArt.sort(sortByLikes)                                       //sort by like first because it is the 1st option
+            photographerArt.sort(sortByLikes)                                       //sort by like first because it is the 1st option on the select
 
-        /** SWITCH CASE **/
+        /*** SWITCH CASE ***/
 
-            
             const options = document.getElementById('sort')
             options.addEventListener('change', () => {
 
@@ -111,38 +107,74 @@
                     /* LIKE SORTING */
                     case("popularity"):                                                                             
                         photographerArt.sort(sortByLikes)
-                    //    console.log('Sort by likes : ')
-                    //    console.log( photographerArt.sort(sortByLikes))
                     break;
 
                     /* ALPHABETICAL SORTING */    
                     case("title"):                                                                          
                         photographerArt.sort(sortByLetters)
-                    //   console.log('Sort by alphabet : ')
-                    //    console.log( photographerArt.sort(sortByLetters))
                     break;
                     
                     /* DATE SORTING */
                     case("date"):                                                                       
                         photographerArt.sort(sortByDates)
-                    //    console.log('Sort by dates : ')
-                    //    console.log( photographerArt.sort(sortByDates))
                     break;
                 }
                 console.log(photographerArt)
-
             })
             
         /*** MEDIA TEMPLATE ***/
+/*
+            function mediaCardDom(){
 
-/*        function MediaDOM(){
+                const mediaArt = `assets/Medias/${artist.name}`;                        //récupération des medias
+                
 
-            const article = document.createElement( 'article' );
-            const h2 = document.createElement( 'h2' );
-            h2.textContent = photographerArt.title;
-            <i class="fa-solid fa-heart"></i> //heart icon
-        }
-*/        
+                const divCard = document.createElement('div')
+                divCard.setAttribute('id', 'artCard')
+
+                const img = document.createElement( 'img' );
+                img.setAttribute('src', mediaArt)
+                img.setAttribute('alt', photographerArt.title)
+
+                const h2 = document.createElement( 'h2' );
+                h2.textContent = photographerArt.title;
+
+                
+                const p = document.createElement('p')
+                p.textContent = photographerArt.likes
+                const i = document.createElement('i')
+                i.setAttribute('class',"fa-solid fa-heart")
+
+                
+                divCard.appendChild(img)
+                divCard.appendChild(h2)
+                divCard.appendChild(p)
+                divCard.appendChild(i)
+            
+*/            
+            photographerArt.forEach(media => {
+            //    console.log(media)      
+            //    const dom = document.getElementById('photographerMedia')
+
+            });
+
+        /*** STICKY FOOTER ***/   
+            
+            /** LIKE CALCUL **/
+
+                /** Put likes in one array **/
+                const likes = []
+                photographerArt.forEach(media => {             
+                    likes.push(media.likes)                 
+                }); 
+                /** Addition of all likes **/
+                let sum = 0
+                likes.forEach(num =>{
+                    sum += num;
+                })
+                console.log(sum) 
+                      
+        /*************************************************************************/        
     return photographer, photographerArt  
 }
 getPhotographerData()

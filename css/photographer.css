@@ -47,17 +47,17 @@
     margin-right: 100px;
 }
 
-#photographerMediaDom{
+#photographerMediaTop{
     display: flex;
     flex-direction: row;
     margin: 50px 0px 0px 50px;
 }
-#photographerMediaDom label{
+#photographerMediaTop label{
     font-weight: 600;
     font-size: 22px;
     margin-right: 20px;
 }
-#photographerMediaDom select{
+#photographerMediaTop select{
     font-weight: normal;
     font-size: 22px;
     background-color: #901C1C;
@@ -67,7 +67,7 @@
     border: none;
     appearance: none;
 }
-#photographerMediaDom select option{
+#photographerMediaTop select option{
     font-weight: 500;
     font-size: 22px;
 }
