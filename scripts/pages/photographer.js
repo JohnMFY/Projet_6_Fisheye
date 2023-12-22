@@ -172,8 +172,28 @@ async function getPhotographerData(){
                 likes.forEach(num =>{
                     sum += num;
                 })
-                console.log(sum) 
-                      
+                
+            /** FOOTER **/
+
+                const footer = document.getElementById('footer')
+
+                const divF = document.createElement('div')
+                divF.setAttribute('id', 'divFooter')
+                
+                const likesDom = document.createElement('p')
+                likesDom.textContent = sum
+                likesDom.setAttribute('class','likesNumber')
+                const likeIcon = document.createElement('img')
+                likeIcon.setAttribute('src',"assets/icons/heart-solid.svg") // font Awesome heart : <i class="fa-solid fa-heart"></i>
+
+                const priceDom = document.createElement('p')
+                priceDom.textContent = artist.price +'€/jour'
+                priceDom.setAttribute('class', 'priceDomFooter')
+
+                footer.appendChild(divF)
+                divF.appendChild(likesDom)
+                divF.appendChild(likeIcon)
+                divF.appendChild(priceDom)
         /*************************************************************************/        
     return photographer, photographerArt  
 }
