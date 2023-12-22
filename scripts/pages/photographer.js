@@ -80,42 +80,52 @@
     /*********************** PHOTOGRAPHER PAGE MAIN *************************/    
 
         /*** MEDIA ARRAY SORTING ***/
-        function onChangeEvent(){
 
-            const options = document.getElementById('sort')
+            /* DATE SORTING */
+            function sortByDates(a,b){
+                return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+            };
 
-            switch(options){
+            /* ALPHABETICAL SORTING */ 
+            function sortByLetters(a,b){
+                if(a.title.toLowerCase() < b.title.toLowerCase()
+                )return -1
+            };
 
-                /* LIKE SORTING */
-                case("popularity"):                                                                             
-                    function sortByLikes(a,b){
-                        return b.likes - a.likes
-                    };
-                    console.log('Sort by likes : ')
-                    console.log( photographerArt.sort(sortByLikes))
-                break;
-
-                /* ALPHABETICAL SORTING */    
-                case("title"):                                                                          
-                    function sortByLetters(a,b){
-                        if(a.title.toLowerCase() < b.title.toLowerCase()
-                        )return -1
-                    };
-                    console.log('Sort by alphabet : ')
-                    console.log( photographerArt.sort(sortByLetters))
-                break;
-                
-                /* DATE SORTING */
-                case("date"):                                                                       
-                    function sortByDates(a,b){
-                        return new Date(a.date).valueOf() - new Date(b.date).valueOf()
-                    };
-                    console.log('Sort by dates : ')
-                    console.log( photographerArt.sort(sortByDates))
-                break;
-            }
-        }
+            /* LIKE SORTING */
+            function sortByLikes(a,b){
+                return b.likes - a.likes
+            };
         
+        /** SWITCH CASE **/
+
+            function sortArray(){
+                const options = document.getElementById('sort').value
+                switch(options){
+
+                    /* LIKE SORTING */
+                    case("popularity"):                                                                             
+                        sortByLikes()
+                        console.log('Sort by likes : ')
+                        console.log( photographerArt.sort(sortByLikes))
+                    break;
+
+                    /* ALPHABETICAL SORTING */    
+                    case("title"):                                                                          
+                    //    sortByLetters()
+                        console.log('Sort by alphabet : ')
+                    //    console.log( photographerArt.sort(sortByLetters))
+                    break;
+                    
+                    /* DATE SORTING */
+                    case("date"):                                                                       
+                    //    sortByDates()
+                        console.log('Sort by dates : ')
+                    //    console.log( photographerArt.sort(sortByDates))
+                    break;
+                }
+            }
+            sortArray()
         /*** MEDIA TEMPLATE ***/
 
 /*        function MediaDOM(){
