@@ -22,7 +22,7 @@
         })
 
         console.log(photographer[0])
-        console.log(photographerArt)
+        console.log(photographerArt.sort(sortByLikes))
 
     /*********************** PHOTOGRAPHER PAGE HEADER **************************/
 
@@ -96,36 +96,43 @@
             function sortByLikes(a,b){
                 return b.likes - a.likes
             };
-        
+
+            photographerArt.sort(sortByLikes)                                       //sort by like first because it is the 1st option
+
         /** SWITCH CASE **/
 
-            function sortArray(){
-                const options = document.getElementById('sort').value
-                switch(options){
+            
+            const options = document.getElementById('sort')
+            options.addEventListener('change', () => {
+
+                const option = document.getElementById('sort').value
+                switch(option){
 
                     /* LIKE SORTING */
                     case("popularity"):                                                                             
-                        sortByLikes()
-                        console.log('Sort by likes : ')
-                        console.log( photographerArt.sort(sortByLikes))
+                        photographerArt.sort(sortByLikes)
+                    //    console.log('Sort by likes : ')
+                    //    console.log( photographerArt.sort(sortByLikes))
                     break;
 
                     /* ALPHABETICAL SORTING */    
                     case("title"):                                                                          
-                    //    sortByLetters()
-                        console.log('Sort by alphabet : ')
+                        photographerArt.sort(sortByLetters)
+                    //   console.log('Sort by alphabet : ')
                     //    console.log( photographerArt.sort(sortByLetters))
                     break;
                     
                     /* DATE SORTING */
                     case("date"):                                                                       
-                    //    sortByDates()
-                        console.log('Sort by dates : ')
+                        photographerArt.sort(sortByDates)
+                    //    console.log('Sort by dates : ')
                     //    console.log( photographerArt.sort(sortByDates))
                     break;
                 }
-            }
-            sortArray()
+                console.log(photographerArt)
+
+            })
+            
         /*** MEDIA TEMPLATE ***/
 
 /*        function MediaDOM(){
