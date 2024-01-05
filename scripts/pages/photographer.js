@@ -123,38 +123,35 @@ async function getPhotographerData(){
             })
             
         /*** MEDIA TEMPLATE ***/
-/*
-            function mediaCardDom(){
 
-                const mediaArt = `assets/Medias/${artist.name}`;                        //récupération des medias
-                
+            photographerArt.forEach(media => {
+                console.log(media)      
 
+                const dom = document.getElementById('photographerMedia')
+                const mediaArt = `assets/Medias/${artist.name}/${media.image}`;                        //récupération des medias
+                let mediaTitle = media.image
+                console.log(media.image)
                 const divCard = document.createElement('div')
                 divCard.setAttribute('id', 'artCard')
 
                 const img = document.createElement( 'img' );
                 img.setAttribute('src', mediaArt)
-                img.setAttribute('alt', photographerArt.title)
+                img.setAttribute('alt', media.title)
 
                 const h2 = document.createElement( 'h2' );
-                h2.textContent = photographerArt.title;
+                h2.textContent = media.title;
 
                 
                 const p = document.createElement('p')
-                p.textContent = photographerArt.likes
-                const i = document.createElement('i')
-                i.setAttribute('class',"fa-solid fa-heart")
-
+                p.textContent = media.likes
+                const likeIcon = document.createElement('img')
+                likeIcon.setAttribute('src',"assets/icons/heart-solid.svg")
                 
+                dom.appendChild(divCard)
                 divCard.appendChild(img)
                 divCard.appendChild(h2)
                 divCard.appendChild(p)
-                divCard.appendChild(i)
-            
-*/            
-            photographerArt.forEach(media => {
-            //    console.log(media)      
-            //    const dom = document.getElementById('photographerMedia')
+                divCard.appendChild(likeIcon)
 
             });
 
@@ -180,6 +177,8 @@ async function getPhotographerData(){
                 const divF = document.createElement('div')
                 divF.setAttribute('id', 'divFooter')
                 
+                const divLike = document.createElement('div')
+                divLike.setAttribute('class','divLike')
                 const likesDom = document.createElement('p')
                 likesDom.textContent = sum
                 likesDom.setAttribute('class','likesNumber')
@@ -191,8 +190,9 @@ async function getPhotographerData(){
                 priceDom.setAttribute('class', 'priceDomFooter')
 
                 footer.appendChild(divF)
-                divF.appendChild(likesDom)
-                divF.appendChild(likeIcon)
+                divF.appendChild(divLike)
+                divLike.appendChild(likesDom)
+                divLike.appendChild(likeIcon)
                 divF.appendChild(priceDom)
         /*************************************************************************/        
     return photographer, photographerArt  
