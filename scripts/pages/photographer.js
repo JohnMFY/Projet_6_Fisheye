@@ -120,17 +120,17 @@ async function getPhotographerData(){
                     break;
                 }
                 console.log(photographerArt)
+
             })
             
         /*** MEDIA TEMPLATE ***/
-
-            photographerArt.forEach(media => {
-                console.log(media)      
+        function test(){   
+            photographerArt.forEach(media => {    
 
                 const dom = document.getElementById('photographerMedia')
                 const mediaArt = `assets/Medias/${artist.name}/${media.image}`;                        //récupération des medias
                 let mediaTitle = media.image
-                console.log(media.image)
+
                 const divCard = document.createElement('div')
                 divCard.setAttribute('id', 'artCard')
 
@@ -138,23 +138,28 @@ async function getPhotographerData(){
                 img.setAttribute('src', mediaArt)
                 img.setAttribute('alt', media.title)
 
+                const divTextCard = document.createElement('div')
+                divTextCard.setAttribute('id', 'divTextCard')
                 const h2 = document.createElement( 'h2' );
                 h2.textContent = media.title;
 
-                
+                const divLike = document.createElement('div')
+                divLike.setAttribute('id', 'divLike')
                 const p = document.createElement('p')
                 p.textContent = media.likes
                 const likeIcon = document.createElement('img')
-                likeIcon.setAttribute('src',"assets/icons/heart-solid.svg")
+                likeIcon.setAttribute('src',"assets/icons/heart_icon.png")
                 
                 dom.appendChild(divCard)
                 divCard.appendChild(img)
-                divCard.appendChild(h2)
-                divCard.appendChild(p)
-                divCard.appendChild(likeIcon)
+                divCard.appendChild(divTextCard)
+                divTextCard.appendChild(h2)
+                divTextCard.appendChild(divLike)
+                divLike.appendChild(p)
+                divLike.appendChild(likeIcon)
 
             });
-
+        }  test()  
         /*** STICKY FOOTER ***/   
             
             /** LIKE CALCUL **/
