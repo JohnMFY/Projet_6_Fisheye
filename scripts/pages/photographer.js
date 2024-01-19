@@ -124,7 +124,7 @@ async function getPhotographerData(){
             })
             
         /*** MEDIA TEMPLATE ***/
-        function test(){   
+        function domInsertion(){   
             photographerArt.forEach(media => {    
 
                 const dom = document.getElementById('photographerMedia')
@@ -137,14 +137,16 @@ async function getPhotographerData(){
                 const img = document.createElement( 'img' );
                 img.setAttribute('src', mediaArt)
                 img.setAttribute('alt', media.title)
+                img.setAttribute('class','picture')
 
                 const divTextCard = document.createElement('div')
                 divTextCard.setAttribute('id', 'divTextCard')
-                const h2 = document.createElement( 'h2' );
-                h2.textContent = media.title;
+                const cardTitle = document.createElement( 'p' );
+                cardTitle.textContent = media.title;
 
                 const divLike = document.createElement('div')
                 divLike.setAttribute('id', 'divLike')
+                divLike.setAttribute('aria-label', 'Likes')
                 const p = document.createElement('p')
                 p.textContent = media.likes
                 const likeIcon = document.createElement('img')
@@ -153,13 +155,20 @@ async function getPhotographerData(){
                 dom.appendChild(divCard)
                 divCard.appendChild(img)
                 divCard.appendChild(divTextCard)
-                divTextCard.appendChild(h2)
+                divTextCard.appendChild(cardTitle)
                 divTextCard.appendChild(divLike)
                 divLike.appendChild(p)
                 divLike.appendChild(likeIcon)
 
             });
-        }  test()  
+        }  domInsertion() 
+        
+        /*** LIKE MANGAGMENT ***/
+            const like = document.getElementById('divLike') /* Good targeting */
+            like.addEventListener('click', () =>{
+                console.log('+1')
+            })
+
         /*** STICKY FOOTER ***/   
             
             /** LIKE CALCUL **/

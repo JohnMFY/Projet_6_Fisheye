@@ -78,22 +78,33 @@
 #photographerMedia{
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-content: center;
 }
 #artCard{
-    width: 25%;
+    width: 29%;
+    height: 525px;
     margin: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 #artCard img{
-    max-width: 100%;
+    width: 100%;
+    height: 500px;
     border-radius: 2%;
+    object-fit:cover;
+    overflow: hidden;
 }
 #divTextCard{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 26px;
+    font-weight: 500;
     width: 100%;
     color: #901C1C;
+    padding: 1%;
 }
 #divLike{
     display: flex;
@@ -101,12 +112,11 @@
     justify-content: space-around;
     width: 15%;
     margin-top: 5px;
-    font-weight: 700;
-    font-size:larger;
 
 }
 #divLike img{
 height: 30px;
+width: 30px;
 }
 
 footer{
