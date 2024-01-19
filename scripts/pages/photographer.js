@@ -148,7 +148,7 @@ async function getPhotographerData(){
                 const p = document.createElement('p')
                 p.textContent = media.likes
                 const likeIcon = document.createElement('img')
-                likeIcon.setAttribute('src',"assets/icons/heart_icon.png")
+                likeIcon.setAttribute('src',"assets/icons/heart-solid-red.svg") 
                 
                 dom.appendChild(divCard)
                 divCard.appendChild(img)
@@ -188,7 +188,7 @@ async function getPhotographerData(){
                 likesDom.textContent = sum
                 likesDom.setAttribute('class','likesNumber')
                 const likeIcon = document.createElement('img')
-                likeIcon.setAttribute('src',"assets/icons/heart-solid.svg") // font Awesome heart : <i class="fa-solid fa-heart"></i>
+                likeIcon.setAttribute('src',"assets/icons/heart-solid.svg")
 
                 const priceDom = document.createElement('p')
                 priceDom.textContent = artist.price +'€/jour'

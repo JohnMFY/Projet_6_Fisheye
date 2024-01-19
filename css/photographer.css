@@ -106,11 +106,13 @@
 
 }
 #divLike img{
-color: #901C1C;
 height: 30px;
 }
 
 footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     
@@ -120,9 +122,9 @@ footer{
     flex-direction: row;
     justify-content: space-between;
     background-color: #D3573C;
-    width: 15%;
+    width: 20%;
     min-width: 200px;
-    border-radius: 5%;
+    border-radius: 5px 5px 0px 0px;
     margin-right: 2%;
 
 }
@@ -130,14 +132,14 @@ footer{
 .divLike{
     margin: 2% 2% 2% 6%;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 28px;
     display: flex;
     flex-direction: row;
 }
 .priceDomFooter{
     font-weight: 500;
-    font-size: 22px;
-    margin: 8% 4% 8% 10%;
+    font-size: 28px;
+    margin: 4% 4% 4% 10%;
 }
 #divFooter img{
     margin: 5% 20%;
