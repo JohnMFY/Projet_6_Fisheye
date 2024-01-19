@@ -183,6 +183,9 @@ footer{
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    position:absolute;
+    top: 0;
+    margin: 25%;
 }
 
 .modal header {
