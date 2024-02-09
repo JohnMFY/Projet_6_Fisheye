@@ -105,18 +105,24 @@ async function getPhotographerData(){
                 switch(option){
 
                     /* LIKE SORTING */
-                    case("popularity"):                                                                             
+                    case("popularity"): 
+                        document.getElementById('photographerMedia').innerHTML="";                                                                            
                         photographerArt.sort(sortByLikes)
+                        domInsertion()
                     break;
 
                     /* ALPHABETICAL SORTING */    
-                    case("title"):                                                                          
+                    case("title"):
+                        document.getElementById('photographerMedia').innerHTML="";                                                                            
                         photographerArt.sort(sortByLetters)
+                        domInsertion()
                     break;
                     
                     /* DATE SORTING */
-                    case("date"):                                                                       
+                    case("date"):
+                        document.getElementById('photographerMedia').innerHTML="";                                                                        
                         photographerArt.sort(sortByDates)
+                        domInsertion()
                     break;
                 }
                 console.log(photographerArt)
@@ -134,7 +140,7 @@ async function getPhotographerData(){
                 const divCard = document.createElement('div')
                 divCard.setAttribute('id', 'artCard')
 
-                const img = document.createElement( 'img' );
+                const img = document.createElement( 'img' ); //faire condition pour .jpg ou .mp4
                 img.setAttribute('src', mediaArt)
                 img.setAttribute('alt', media.title)
                 img.setAttribute('class','picture')
@@ -162,7 +168,8 @@ async function getPhotographerData(){
 
             });
         }  domInsertion() 
-        
+
+        // ajouter class like pour mettre -1 ou +1
         /*** LIKE MANGAGMENT ***/
             const like = document.getElementById('divLike') /* Good targeting */
             like.addEventListener('click', () =>{
