@@ -94,6 +94,13 @@
     object-fit:cover;
     overflow: hidden;
 }
+#artCard video{
+    width: 100%;
+    height: 500px;
+    border-radius: 2%;
+    object-fit:cover;
+    overflow: hidden;
+}
 #divTextCard{
     display: flex;
     flex-direction: row;

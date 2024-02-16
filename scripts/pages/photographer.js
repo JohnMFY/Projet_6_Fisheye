@@ -136,48 +136,105 @@ async function getPhotographerData(){
                 const dom = document.getElementById('photographerMedia')
                 const mediaArt = `assets/Medias/${artist.name}/${media.image}`;                        //récupération des medias
                 let mediaTitle = media.image
+                const mediaArtVideo = `assets/Medias/${artist.name}/${media.video}`; 
 
                 const divCard = document.createElement('div')
                 divCard.setAttribute('id', 'artCard')
-
-                const img = document.createElement( 'img' ); //faire condition pour .jpg ou .mp4
-                img.setAttribute('src', mediaArt)
-                img.setAttribute('alt', media.title)
-                img.setAttribute('class','picture')
+                
+                const mediaContent = document.createElement( 'img' ); 
+                mediaContent.setAttribute('src', mediaArt);
+                mediaContent.setAttribute('alt', media.title);
+                mediaContent.setAttribute('class','picture');
+               
+                const mediaContentVideo = document.createElement('video');
+                mediaContentVideo.setAttribute('src', mediaArtVideo);
+                mediaContentVideo.setAttribute('alt', media.title);
+                mediaContentVideo.setAttribute('class','picture');
+                mediaContentVideo.play();
+                mediaContentVideo.loop = true; 
 
                 const divTextCard = document.createElement('div')
                 divTextCard.setAttribute('id', 'divTextCard')
                 const cardTitle = document.createElement( 'p' );
                 cardTitle.textContent = media.title;
+                cardTitle.setAttribute("class", "cardTitle")
 
                 const divLike = document.createElement('div')
                 divLike.setAttribute('id', 'divLike')
-                divLike.setAttribute('aria-label', 'Likes')
+                divLike.setAttribute('class', 'likes')
+                divLike.setAttribute('aria-label', 'likes')
                 const p = document.createElement('p')
                 p.textContent = media.likes
                 const likeIcon = document.createElement('img')
                 likeIcon.setAttribute('src',"assets/icons/heart-solid-red.svg") 
                 
                 dom.appendChild(divCard)
-                divCard.appendChild(img)
+                if(media.video == undefined){
+                    divCard.appendChild(mediaContent)
+                }else{
+                    divCard.appendChild(mediaContentVideo)
+                }
                 divCard.appendChild(divTextCard)
                 divTextCard.appendChild(cardTitle)
                 divTextCard.appendChild(divLike)
                 divLike.appendChild(p)
                 divLike.appendChild(likeIcon)
+            }); 
 
-            });
         }  domInsertion() 
 
-        // ajouter class like pour mettre -1 ou +1
         /*** LIKE MANGAGMENT ***/
-            const like = document.getElementById('divLike') /* Good targeting */
-            like.addEventListener('click', () =>{
-                console.log('+1')
-            })
 
-        /*** STICKY FOOTER ***/   
-            
+        let likeDiv = document.querySelectorAll('.likes')
+        likeDiv.forEach(like =>{
+            console.log(like)
+
+            like.addEventListener('click', () =>{
+    
+                console.log('OK LIKE')
+
+                if(like.classList.contains('liked')){
+                    console.log('-1 like')
+                    like.classList.remove('liked')
+                    
+                }else{   
+                    console.log('+1 like')
+                    like.classList.add('liked')
+                }
+            })
+        })
+
+/************************************************************************ 
+        let likeDiv = document.querySelectorAll('.Likes');
+        let likeDivArray = [...likeDiv]; 
+        console.log(likeDivArray)
+        likeDivArray.forEach(likeDiv => {
+
+            likeDiv.addEventListener('click', () =>{
+                const cardTitle = document.querySelector('.cardTitle')
+                console.log('OK LIKE'+ cardTitle.textContent)})
+
+            if(likeDiv.classList.contains('liked')){
+                console.log('-1 like')
+            //    likeDiv.classList.remove('liked')
+                
+            }else{   
+                console.log('+1 like')
+            //    likeDiv.classList.add('liked')
+            }
+
+        });
+****************************************************************************/
+        /*** LIGHTBOX ***/          // W3School : https://www.w3schools.com/howto/howto_js_lightbox.asp
+/*        const mediaContentAll = document.querySelectorAll('picture')
+        mediaContentAll.addEventListener('click',()=>{
+            console.log('OK Lightbox')
+        })
+*/
+        /****************************************************************************/
+
+        /*********************** PHOTOGRAPHER PAGE FOOTER *************************/
+
             /** LIKE CALCUL **/
 
                 /** Put likes in one array **/
