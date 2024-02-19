@@ -215,14 +215,14 @@ async function getPhotographerData(){
     
     })
     
-/****************************************************************************/
+    /****************************************************************************/
         /*** LIGHTBOX ***/          // W3School : https://www.w3schools.com/howto/howto_js_lightbox.asp
 /*        const mediaContentAll = document.querySelectorAll('picture')
         mediaContentAll.addEventListener('click',()=>{
             console.log('OK Lightbox')
         })
 */
-/****************************************************************************/
+    /****************************************************************************/
 
         /*********************** PHOTOGRAPHER PAGE FOOTER *************************/
 
