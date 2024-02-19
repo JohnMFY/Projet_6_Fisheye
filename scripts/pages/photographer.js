@@ -125,7 +125,6 @@ async function getPhotographerData(){
                         domInsertion()
                     break;
                 }
-                console.log(photographerArt)
 
             })
             
@@ -165,6 +164,7 @@ async function getPhotographerData(){
                 divLike.setAttribute('aria-label', 'likes')
                 const p = document.createElement('p')
                 p.textContent = media.likes
+                p.setAttribute('class', 'mediaLikes')
                 const likeIcon = document.createElement('img')
                 likeIcon.setAttribute('src',"assets/icons/heart-solid-red.svg") 
                 
@@ -179,59 +179,50 @@ async function getPhotographerData(){
                 divTextCard.appendChild(divLike)
                 divLike.appendChild(p)
                 divLike.appendChild(likeIcon)
+            
             }); 
-
         }  domInsertion() 
 
-        /*** LIKE MANGAGMENT ***/
+    /*** LIKE MANGAGMENT ***/
 
-        let likeDiv = document.querySelectorAll('.likes')
-        likeDiv.forEach(like =>{
-            console.log(like)
-
-            like.addEventListener('click', () =>{
+    let likeDiv = document.querySelectorAll('.likes')
     
-                console.log('OK LIKE')
+    likeDiv.forEach(like =>{
 
-                if(like.classList.contains('liked')){
-                    console.log('-1 like')
-                    like.classList.remove('liked')
-                    
-                }else{   
-                    console.log('+1 like')
-                    like.classList.add('liked')
-                }
-            })
-        })
+        like.addEventListener('click', () =>{
 
-/************************************************************************ 
-        let likeDiv = document.querySelectorAll('.Likes');
-        let likeDivArray = [...likeDiv]; 
-        console.log(likeDivArray)
-        likeDivArray.forEach(likeDiv => {
+            let likeNumber = parseInt(like.children[0].innerHTML)
+            let likeP = like.firstChild
 
-            likeDiv.addEventListener('click', () =>{
-                const cardTitle = document.querySelector('.cardTitle')
-                console.log('OK LIKE'+ cardTitle.textContent)})
+            const totalLikes = document.getElementById('totalLikes')
+            let totalLikesNum = parseInt(totalLikes.innerHTML)
 
-            if(likeDiv.classList.contains('liked')){
-                console.log('-1 like')
-            //    likeDiv.classList.remove('liked')
-                
+            if(like.classList.contains('liked')){
+                like.classList.remove('liked')
+                let disliked = likeNumber -1 
+                likeP.innerHTML = disliked
+                let totalLikesNumMinus = totalLikesNum -1
+                totalLikes.innerHTML = totalLikesNumMinus
             }else{   
-                console.log('+1 like')
-            //    likeDiv.classList.add('liked')
+                like.classList.add('liked')
+                let liked = likeNumber + 1
+                likeP.innerHTML = liked
+                let totalLikesNumPlus = totalLikesNum +1
+                totalLikes.innerHTML = totalLikesNumPlus
             }
-
-        });
-****************************************************************************/
+        
+        }) 
+    
+    })
+    
+/****************************************************************************/
         /*** LIGHTBOX ***/          // W3School : https://www.w3schools.com/howto/howto_js_lightbox.asp
 /*        const mediaContentAll = document.querySelectorAll('picture')
         mediaContentAll.addEventListener('click',()=>{
             console.log('OK Lightbox')
         })
 */
-        /****************************************************************************/
+/****************************************************************************/
 
         /*********************** PHOTOGRAPHER PAGE FOOTER *************************/
 
@@ -260,6 +251,7 @@ async function getPhotographerData(){
                 const likesDom = document.createElement('p')
                 likesDom.textContent = sum
                 likesDom.setAttribute('class','likesNumber')
+                likesDom.setAttribute('id','totalLikes')
                 const likeIcon = document.createElement('img')
                 likeIcon.setAttribute('src',"assets/icons/heart-solid.svg")
 
