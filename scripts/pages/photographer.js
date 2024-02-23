@@ -144,10 +144,12 @@ async function getPhotographerData(){
                 mediaContent.setAttribute('src', mediaArt);
                 mediaContent.setAttribute('alt', media.title);
                 mediaContent.setAttribute('class','picture');
-               
+                mediaContent.setAttribute('title', media.title)
+
                 const mediaContentVideo = document.createElement('video');
                 mediaContentVideo.setAttribute('src', mediaArtVideo);
                 mediaContentVideo.setAttribute('alt', media.title);
+                mediaContent.setAttribute('title', media.title)
                 mediaContentVideo.setAttribute('class','picture');
                 mediaContentVideo.play();
                 mediaContentVideo.loop = true; 
@@ -215,13 +217,34 @@ async function getPhotographerData(){
     
     })
     
-    /****************************************************************************/
-        /*** LIGHTBOX ***/          // W3School : https://www.w3schools.com/howto/howto_js_lightbox.asp
-/*        const mediaContentAll = document.querySelectorAll('picture')
-        mediaContentAll.addEventListener('click',()=>{
-            console.log('OK Lightbox')
+    /**************************** LIGHTBOX ***********************************/
+                  
+        let mediaDisplayed = document.getElementsByClassName('picture');
+        for(let i=0; i<mediaDisplayed.length; i++){
+            const mediaArray = []
+            mediaArray.push(mediaDisplayed[i])
+            console.log(mediaArray)
+            
+            mediaDisplayed[i].addEventListener('click', () => {
+                console.log(mediaDisplayed[i])
+                const lightboxModal = document.getElementById('lightbox_modal')
+                const mediaLightbox = document.getElementById('mediaLigthbox')
+                const mediaTitleLightbox = document.getElementById('mediaTitleLightbox')
+                lightboxModal.style.display = "flex";
+                mediaLightbox.appendChild(mediaDisplayed[i])
+                mediaTitleLightbox.appendChild
+                console.log(mediaLightbox)
+            })
+        }
+
+        const closeBtnLightboxModal = document.getElementById("closeLightbox");
+        closeBtnLightboxModal.addEventListener('click', () => {
+            const lightboxModal = document.getElementById('lightbox_modal')
+            lightboxModal.style.display = "none";
+            domInsertion()
         })
-*/
+
+
     /****************************************************************************/
 
         /*********************** PHOTOGRAPHER PAGE FOOTER *************************/
