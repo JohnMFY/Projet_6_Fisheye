@@ -124,9 +124,12 @@ height: 30px;
 width: 30px;
 }
 
+
+/******************** LIGHTBOX ************************/
+
 #lightbox_modal {
     align-items: center;
-    background-color: rgba(220, 220, 220, 0.85);
+    background-color: rgba(220, 220, 220, 0.9);
     color: white;
     display: none;
     height: 98%;
@@ -146,17 +149,38 @@ width: 30px;
  #mediaLigthbox .picture{
     width: 80%;
     height: 80%;
-    padding: 5%;
-    margin: 5%;
-    border-radius: 2%;
+    margin: 5% 0%;
     overflow: hidden;
     object-fit: cover;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#closeLightbox{
+    position: fixed;
+    top: 2%;
+    left: 93%;
+}
+#mediaTitleLightbox{
+    width: 80%;
+}
+#mediaTitleLightbox p{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 30px;
+    font-weight: 600;
+    width: 100%;
+    color: #901C1C;
+    padding: 0% 0% 4% 0%;
 }
 .iconControl{
     height: 60px;
     width: 60px;
+    margin: 0% 2%;
+    
 }
 
+
+/******************** FOOTER ************************/
 
 footer{
     position: fixed;
@@ -193,6 +217,10 @@ footer{
 #divFooter img{
     margin: 5% 20%;
 }
+
+
+/******************** CONTACT MODAL ************************/
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;

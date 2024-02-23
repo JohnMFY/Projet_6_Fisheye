@@ -149,7 +149,7 @@ async function getPhotographerData(){
                 const mediaContentVideo = document.createElement('video');
                 mediaContentVideo.setAttribute('src', mediaArtVideo);
                 mediaContentVideo.setAttribute('alt', media.title);
-                mediaContent.setAttribute('title', media.title)
+                mediaContentVideo.setAttribute('title', media.title)
                 mediaContentVideo.setAttribute('class','picture');
                 mediaContentVideo.play();
                 mediaContentVideo.loop = true; 
@@ -220,28 +220,78 @@ async function getPhotographerData(){
     /**************************** LIGHTBOX ***********************************/
                   
         let mediaDisplayed = document.getElementsByClassName('picture');
-        for(let i=0; i<mediaDisplayed.length; i++){
-            const mediaArray = []
-            mediaArray.push(mediaDisplayed[i])
-            console.log(mediaArray)
-            
+        let mediaArray = Array.from(mediaDisplayed)
+        console.log(mediaArray)
+
+        for(let i=0; i<mediaArray.length; i++){
+            console.log(mediaArray[i].title)
+            console.log(mediaArray[i].src)
+        
             mediaDisplayed[i].addEventListener('click', () => {
-                console.log(mediaDisplayed[i])
+                
                 const lightboxModal = document.getElementById('lightbox_modal')
                 const mediaLightbox = document.getElementById('mediaLigthbox')
                 const mediaTitleLightbox = document.getElementById('mediaTitleLightbox')
+
                 lightboxModal.style.display = "flex";
-                mediaLightbox.appendChild(mediaDisplayed[i])
-                mediaTitleLightbox.appendChild
-                console.log(mediaLightbox)
+                let src = mediaArray[i].src;
+                let title = mediaArray[i].title;
+                console.log(src)
+                console.log(title)
+                                
+                var extArray = src.split(".");
+                var srcType = extArray[extArray.length - 1]
+
+                const picture = document.createElement( 'img' );
+                picture.setAttribute('src', src)
+                picture.setAttribute('title', title)
+                picture.setAttribute('class', 'picture')
+
+                const video = document.createElement( 'video' );
+                video.setAttribute('src', src)
+                video.setAttribute('title', title)
+                video.setAttribute('class', 'picture')
+                video.play();
+                video.loop = true; 
+
+                const TitleLightbox = document.createElement('p')
+                TitleLightbox.textContent = title
+
+                if(srcType == 'jpg'){
+                    mediaLightbox.appendChild(picture)
+                }else{
+                    mediaLightbox.appendChild(video)
+                }
+
+                mediaTitleLightbox.appendChild(TitleLightbox)
             })
+
+            const previousBtn = document.getElementById('previous')
+                previousBtn.addEventListener('click', () => {
+                    if (i > 0) {
+                        mediaLightbox.removeChild(mediaLightbox.lastElementChild)
+                        mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild)
+                        i--;
+                    }
+                });
+
+            const nextBtn = document.getElementById('next')
+                nextBtn.addEventListener('click', () => {
+                    if (i < mediaArray.length - 1) {
+                        mediaLightbox.removeChild(mediaLightbox.lastElementChild)
+                        mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild)
+                        i++;
+                    }
+                });
         }
 
         const closeBtnLightboxModal = document.getElementById("closeLightbox");
         closeBtnLightboxModal.addEventListener('click', () => {
             const lightboxModal = document.getElementById('lightbox_modal')
+            const mediaLightbox = document.getElementById('mediaLigthbox')
             lightboxModal.style.display = "none";
-            domInsertion()
+            mediaLightbox.removeChild(mediaLightbox.lastElementChild);
+            mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild);
         })
 
 
