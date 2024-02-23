@@ -109,6 +109,8 @@ async function getPhotographerData(){
                         document.getElementById('photographerMedia').innerHTML="";                                                                            
                         photographerArt.sort(sortByLikes)
                         domInsertion()
+                        likeManagment()
+                        lightbox()
                     break;
 
                     /* ALPHABETICAL SORTING */    
@@ -116,6 +118,8 @@ async function getPhotographerData(){
                         document.getElementById('photographerMedia').innerHTML="";                                                                            
                         photographerArt.sort(sortByLetters)
                         domInsertion()
+                        likeManagment()
+                        lightbox()
                     break;
                     
                     /* DATE SORTING */
@@ -123,12 +127,14 @@ async function getPhotographerData(){
                         document.getElementById('photographerMedia').innerHTML="";                                                                        
                         photographerArt.sort(sortByDates)
                         domInsertion()
+                        likeManagment()
+                        lightbox()
                     break;
                 }
 
             })
             
-        /*** MEDIA TEMPLATE ***/
+    /**************************** MEDIA TEMPLATE ***********************************/
         function domInsertion(){   
             photographerArt.forEach(media => {    
 
@@ -185,89 +191,87 @@ async function getPhotographerData(){
             }); 
         }  domInsertion() 
 
-    /*** LIKE MANGAGMENT ***/
+    /**************************** LIKE MANAGMENT ***********************************/
+        function likeManagment(){
+            let likeDiv = document.querySelectorAll('.likes')
+            
+            likeDiv.forEach(like =>{
 
-    let likeDiv = document.querySelectorAll('.likes')
-    
-    likeDiv.forEach(like =>{
+                like.addEventListener('click', () =>{
 
-        like.addEventListener('click', () =>{
+                    let likeNumber = parseInt(like.children[0].innerHTML)
+                    let likeP = like.firstChild
 
-            let likeNumber = parseInt(like.children[0].innerHTML)
-            let likeP = like.firstChild
+                    const totalLikes = document.getElementById('totalLikes')
+                    let totalLikesNum = parseInt(totalLikes.innerHTML)
 
-            const totalLikes = document.getElementById('totalLikes')
-            let totalLikesNum = parseInt(totalLikes.innerHTML)
-
-            if(like.classList.contains('liked')){
-                like.classList.remove('liked')
-                let disliked = likeNumber -1 
-                likeP.innerHTML = disliked
-                let totalLikesNumMinus = totalLikesNum -1
-                totalLikes.innerHTML = totalLikesNumMinus
-            }else{   
-                like.classList.add('liked')
-                let liked = likeNumber + 1
-                likeP.innerHTML = liked
-                let totalLikesNumPlus = totalLikesNum +1
-                totalLikes.innerHTML = totalLikesNumPlus
-            }
-        
-        }) 
-    
-    })
-    
-    /**************************** LIGHTBOX ***********************************/
-                  
-        let mediaDisplayed = document.getElementsByClassName('picture');
-        let mediaArray = Array.from(mediaDisplayed)
-        console.log(mediaArray)
-
-        for(let i=0; i<mediaArray.length; i++){
-            console.log(mediaArray[i].title)
-            console.log(mediaArray[i].src)
-        
-            mediaDisplayed[i].addEventListener('click', () => {
+                    if(like.classList.contains('liked')){
+                        like.classList.remove('liked')
+                        let disliked = likeNumber -1 
+                        likeP.innerHTML = disliked
+                        let totalLikesNumMinus = totalLikesNum -1
+                        totalLikes.innerHTML = totalLikesNumMinus
+                    }else{   
+                        like.classList.add('liked')
+                        let liked = likeNumber + 1
+                        likeP.innerHTML = liked
+                        let totalLikesNumPlus = totalLikesNum +1
+                        totalLikes.innerHTML = totalLikesNumPlus
+                    }
                 
-                const lightboxModal = document.getElementById('lightbox_modal')
-                const mediaLightbox = document.getElementById('mediaLigthbox')
-                const mediaTitleLightbox = document.getElementById('mediaTitleLightbox')
-
-                lightboxModal.style.display = "flex";
-                let src = mediaArray[i].src;
-                let title = mediaArray[i].title;
-                console.log(src)
-                console.log(title)
-                                
-                var extArray = src.split(".");
-                var srcType = extArray[extArray.length - 1]
-
-                const picture = document.createElement( 'img' );
-                picture.setAttribute('src', src)
-                picture.setAttribute('title', title)
-                picture.setAttribute('class', 'picture')
-
-                const video = document.createElement( 'video' );
-                video.setAttribute('src', src)
-                video.setAttribute('title', title)
-                video.setAttribute('class', 'picture')
-                video.play();
-                video.loop = true; 
-
-                const TitleLightbox = document.createElement('p')
-                TitleLightbox.textContent = title
-
-                if(srcType == 'jpg'){
-                    mediaLightbox.appendChild(picture)
-                }else{
-                    mediaLightbox.appendChild(video)
-                }
-
-                mediaTitleLightbox.appendChild(TitleLightbox)
+                }) 
+            
             })
+        }likeManagment()
 
-            const previousBtn = document.getElementById('previous')
+    /**************************** LIGHTBOX ***********************************/
+        function lightbox(){         
+            let mediaDisplayed = document.getElementsByClassName('picture');
+            let mediaArray = Array.from(mediaDisplayed)
+            console.log('lightbox array',mediaArray)
+
+            for(let i=0; i<mediaArray.length; i++){
+            
+                mediaDisplayed[i].addEventListener('click', () => {
+                    
+                    const lightboxModal = document.getElementById('lightbox_modal')
+                    const mediaLightbox = document.getElementById('mediaLigthbox')
+                    const mediaTitleLightbox = document.getElementById('mediaTitleLightbox')
+
+                    lightboxModal.style.display = "flex";
+                    let src = mediaArray[i].src;
+                    let title = mediaArray[i].title;
+
+                    var extArray = src.split(".");
+                    var srcType = extArray[extArray.length - 1]
+
+                    const picture = document.createElement( 'img' );
+                    picture.setAttribute('src', src)
+                    picture.setAttribute('title', title)
+                    picture.setAttribute('class', 'picture')
+
+                    const video = document.createElement( 'video' );
+                    video.setAttribute('src', src)
+                    video.setAttribute('title', title)
+                    video.setAttribute('class', 'picture')
+                    video.play();
+                    video.loop = true; 
+
+                    const TitleLightbox = document.createElement('p')
+                    TitleLightbox.textContent = title
+
+                    if(srcType == 'jpg'){
+                        mediaLightbox.appendChild(picture)
+                    }else{
+                        mediaLightbox.appendChild(video)
+                    }
+                    mediaTitleLightbox.appendChild(TitleLightbox)
+                })
+            }
+            
+                const previousBtn = document.getElementById('previous')
                 previousBtn.addEventListener('click', () => {
+                    console.log('click previous')
                     if (i > 0) {
                         mediaLightbox.removeChild(mediaLightbox.lastElementChild)
                         mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild)
@@ -275,26 +279,26 @@ async function getPhotographerData(){
                     }
                 });
 
-            const nextBtn = document.getElementById('next')
-                nextBtn.addEventListener('click', () => {
-                    if (i < mediaArray.length - 1) {
-                        mediaLightbox.removeChild(mediaLightbox.lastElementChild)
-                        mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild)
-                        i++;
-                    }
+                const nextBtn = document.getElementById('next')
+                    nextBtn.addEventListener('click', () => {
+                        console.log('click next')
+                        if (i < mediaArray.length - 1) {
+                            mediaLightbox.removeChild(mediaLightbox.lastElementChild)
+                            mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild)
+                            i++;
+                        }
                 });
-        }
 
-        const closeBtnLightboxModal = document.getElementById("closeLightbox");
-        closeBtnLightboxModal.addEventListener('click', () => {
-            const lightboxModal = document.getElementById('lightbox_modal')
-            const mediaLightbox = document.getElementById('mediaLigthbox')
-            lightboxModal.style.display = "none";
-            mediaLightbox.removeChild(mediaLightbox.lastElementChild);
-            mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild);
-        })
+            const closeBtnLightboxModal = document.getElementById("closeLightbox");
+            closeBtnLightboxModal.addEventListener('click', () => {
+                const lightboxModal = document.getElementById('lightbox_modal')
+                const mediaLightbox = document.getElementById('mediaLigthbox')
+                lightboxModal.style.display = "none";
+                mediaLightbox.removeChild(mediaLightbox.lastElementChild);
+                mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild);
+            })
 
-
+        } lightbox()    
     /****************************************************************************/
 
         /*********************** PHOTOGRAPHER PAGE FOOTER *************************/
