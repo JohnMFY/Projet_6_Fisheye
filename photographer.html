@@ -17,7 +17,7 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" aria-label="contact me" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div id="photographerMediaTop">
 
@@ -38,24 +38,24 @@
 			<div class="modal">
 				<header id='contactHeader' >
           <h2 id="contactH2" aria-label="contact me">Contactez-moi</h2>
-          <img id="closeModal" src="assets/icons/close.svg" tabindex="3" onclick="closeModal()"/>
+          <img id="closeModal" aria-label="Close Contact form" src="assets/icons/close.svg" tabindex="3" onclick="closeModal()"/>
         </header>
 				<form id="form">
 					<div>
 						<label>Prénom</label>
-            <input type="text" id="prenom"/>
+            <input type="text" id="prenom" aria-label="First name"/>
             <label>Nom</label>
-            <input  type="text" id="nom"/>
+            <input  type="text" id="nom" aria-label="Last name"/>
             <label>Email</label>
-            <input type="text" id="email"/>
+            <input type="text" id="email" aria-label="Email"/>
             <label>Message</label>
-						<input type="text" id="message"/>
+						<input type="text" id="message" aria-label="Your message"/>
 					</div>
-          <button class="contact_button" id="submit">Envoyer</button>
+          <button class="contact_button" id="submit" aria-label="send">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <div id="lightbox_modal" aria-label="image closeup view">
+    <div id="lightbox_modal" aria-label="Image closeup view">
         <div id="mediaAndControlLigthbox">
           <img tabindex="2" src="assets/icons/left-red.svg" alt="previous_image" aria-label="previous image" id="previous" class="iconControl">
           

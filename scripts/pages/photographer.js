@@ -6,9 +6,9 @@
 
 async function getPhotographerData(){
 
-    const photographerId = window.location.search
-    const UrlParams = new URLSearchParams(photographerId)
-    const id = UrlParams.get("id")
+    const photographerId = window.location.search;
+    const UrlParams = new URLSearchParams(photographerId);
+    const id = UrlParams.get("id");
     
         const Data = await fetch(`../../data/photographers.json`);
         const photographersData = await Data.json(); //datas des photographes en JSON
@@ -19,7 +19,7 @@ async function getPhotographerData(){
 
         const photographerArt = photographersData.media.filter(function(data){
             return data.photographerId == id
-        })
+        });
 
     /*********************** PHOTOGRAPHER PAGE HEADER **************************/
 
@@ -54,6 +54,7 @@ async function getPhotographerData(){
         const modalHeader = document.getElementById('contactHeader')
         const modalName = document.createElement('h2')
         modalName.textContent = artist.name
+        modalName.setAttribute('aria-label', artist.name);
         modalHeader.appendChild(modalName)
 
         const submit = document.getElementById('submit')
@@ -140,7 +141,6 @@ async function getPhotographerData(){
 
                 const dom = document.getElementById('photographerMedia')
                 const mediaArt = `assets/Medias/${artist.name}/${media.image}`;                        //récupération des medias
-                let mediaTitle = media.image
                 const mediaArtVideo = `assets/Medias/${artist.name}/${media.video}`; 
 
                 let extMedia = mediaArt.split(".");
@@ -155,6 +155,7 @@ async function getPhotographerData(){
                 mediaContent.setAttribute('class','picture');
                 mediaContent.setAttribute('title', media.title);
                 mediaContent.setAttribute('tabindex', '1');
+                mediaContent.setAttribute('aria-label', 'closeup view'+ media.title);
 
                 const mediaContentVideo = document.createElement('video');
                 mediaContentVideo.setAttribute('src', mediaArtVideo);
@@ -162,6 +163,7 @@ async function getPhotographerData(){
                 mediaContentVideo.setAttribute('title', media.title);
                 mediaContentVideo.setAttribute('class','picture');
                 mediaContentVideo.setAttribute('tabindex', '1');
+                mediaContentVideo.setAttribute('aria-label', 'closeup view');
                 mediaContentVideo.play();
                 mediaContentVideo.loop = true; 
 
@@ -209,7 +211,7 @@ async function getPhotographerData(){
 
                     const totalLikes = document.getElementById('totalLikes')
                     let totalLikesNum = parseInt(totalLikes.innerHTML)
-
+                                                                                //Only one like possible with the toggle of a class + addtion to the total of likes
                     if(like.classList.contains('liked')){
                         like.classList.remove('liked')
                         let disliked = likeNumber -1 
@@ -230,11 +232,10 @@ async function getPhotographerData(){
         }likeManagment()
 
     /**************************** LIGHTBOX ***********************************/
-        function lightbox(){   
-    
-            let mediaDisplayed = document.getElementsByClassName('picture');
-            let mediaArray = Array.from(mediaDisplayed)
 
+           
+        function lightbox(){  
+            
             const lightboxModal = document.getElementById('lightbox_modal')
             const mediaLightbox = document.getElementById('mediaLigthbox')
             const mediaTitleLightbox = document.getElementById('mediaTitleLightbox')
@@ -242,20 +243,25 @@ async function getPhotographerData(){
             const previousBtn = document.getElementById('previous')
             const closeBtnLightboxModal = document.getElementById("closeLightbox");
 
-            for(let i=0; i<mediaArray.length; i++){
+            let mediaDisplayed = document.getElementsByClassName('picture');
+            let mediaArray = []
+            mediaArray = Array.from(mediaDisplayed)                             //takiing the data from the DOM to push them in an array
+            console.log(mediaArray)
+
+            for(let i=0; i<mediaArray.length; i++){                 
             
                 mediaArray[i].addEventListener('click', () => {
 
-                    function mediaLightboxCreation(){  
-                    lightboxModal.style.display = "flex";
-                      
-                        let src = mediaArray[i].src;
-                        let title = mediaArray[i].title;
-
-                        let extArray = src.split(".");
-                        let srcType = extArray[extArray.length - 1]
-
+                    /*** MEDIA INSERTION IN THE LIGHTBOX ***/
+                        function mediaLightboxCreation(){  
+                            lightboxModal.style.display = "flex";
                         
+                            let src = mediaArray[i].src;
+                            let title = mediaArray[i].title;
+
+                            let extArray = src.split(".");
+                            let srcType = extArray[extArray.length - 1]
+
                             const picture = document.createElement( 'img' );
                             picture.setAttribute('src', src)
                             picture.setAttribute('title', title)
@@ -271,34 +277,35 @@ async function getPhotographerData(){
                             const TitleLightbox = document.createElement('p')
                             TitleLightbox.textContent = title
 
-                        if(srcType == 'jpg'){
-                            mediaLightbox.appendChild(picture)
-                        }else{
-                            mediaLightbox.appendChild(video)
-                        }
-                        mediaTitleLightbox.appendChild(TitleLightbox)
-                        nextBtn.style.display = 'flex'
-                        previousBtn.style.display = 'flex'
-                    } mediaLightboxCreation()
-                    
+                            if(srcType == 'jpg'){
+                                mediaLightbox.appendChild(picture)
+                            }else{
+                                mediaLightbox.appendChild(video)
+                            }
+                            mediaTitleLightbox.appendChild(TitleLightbox)
+                            nextBtn.style.display = 'flex'
+                            previousBtn.style.display = 'flex'
+                        } mediaLightboxCreation()
+                    /**************************************************************/ 
+
                     /***************** LIGHTBOX NAVIGATION ***********************/ 
                         function lightboxNav(){  
 
                             /** NEXT EVENT LIGHTBOX **/
                                 function nextMediaLightbox(){
-                                if (i < mediaArray.length - 1) {
-                                    
-                                        mediaLightbox.removeChild(mediaLightbox.lastElementChild)
-                                        mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild)
-                                        i++;
-                                        mediaLightboxCreation()
-                                    }
+                                    if (i < mediaArray.length - 1) {
+                                        
+                                            mediaLightbox.removeChild(mediaLightbox.lastElementChild)
+                                            mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild)
+                                            i++;
+                                            mediaLightboxCreation()
+                                    }//if(i = mediaArray.length){ go back to the start of the array : mediaArray[0] }
                                 } 
                                 nextBtn.addEventListener('click', () => {
                                     nextMediaLightbox()
                                 });
                             /***************************/ 
-                            
+
                             /** PREVIOUS EVENT LIGHTBOX **/
                                 function previousMediaLigthbox(){
                                     if (i > 0) {
@@ -307,7 +314,7 @@ async function getPhotographerData(){
                                         mediaTitleLightbox.removeChild(mediaTitleLightbox.lastElementChild)
                                         i--;
                                         mediaLightboxCreation()
-                                    }
+                                    }//if(i = 0){ go back to the end of the array : mediaArray[mediaArray.length] }
                                 }
                                 previousBtn.addEventListener('click', () => {
                                     previousMediaLigthbox()
@@ -347,11 +354,9 @@ async function getPhotographerData(){
                     /******************************************************/ 
                 })  
             }
-            
+
         } lightbox()   
         
-
-
     /****************************************************************************/
 
         /*********************** PHOTOGRAPHER PAGE FOOTER *************************/
