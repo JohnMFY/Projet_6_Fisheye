@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -11,8 +11,8 @@
   </head>
   <body>
     <header>
-      <a href="index.html" alt='Fisheye home page' >
-        <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html" aria-label='Fisheye home page' >
+        <img src="assets/images/logo.png" alt='Fisheye home page' class="logo" />
       </a>
     </header>
     <main id="main">
@@ -21,7 +21,7 @@
       </div>
       <div id="photographerMediaTop">
 
-        <label for="photographerMediaSort">Trier par </label>
+        <label id="photographerMediaSort">Trier par </label>
 
         <select name="sort" id="sort">
           <option value="popularity">Popularité</option>
@@ -38,7 +38,7 @@
 			<div class="modal">
 				<header id='contactHeader' >
           <h2 id="contactH2" aria-label="contact me">Contactez-moi</h2>
-          <img id="closeModal" aria-label="Close Contact form" src="assets/icons/close.svg" tabindex="3" onclick="closeModal()"/>
+          <img id="closeModal" alt="Close Contact form" aria-label="Close Contact form" src="assets/icons/close.svg" tabindex="3" onclick="closeModal()"/>
         </header>
 				<form id="form">
 					<div>
